@@ -1,0 +1,9 @@
+{
+  "token": "",
+  "model": "aeonium/Aeonium-v1.1-Chat-4B",
+  "peftModel": "",
+  "load4bit": false,
+  "systemPrompt": "You are a helpful assistant",
+  "temperature": 1,
+  "contextMaxLen": 10
+}
