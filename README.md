@@ -8,7 +8,7 @@ chatbot
   <summary>Prepare environment with conda</summary>
 
   ```bash
-  conda create -y python=3.12 -n phrenia
+  conda create -y python=3.11 -n phrenia
   conda activate phrenia
   ```
 </details>
