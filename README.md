@@ -15,7 +15,7 @@ chatbot
 
 ```bash
 pip install -r requirements.lock.txt
-mv simple.config.json config.json
+cp simple.config.json config.json
 vim config.json
 python main.py
 ```
