@@ -9,7 +9,7 @@ from modules.Config import Config
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 class LLM:
-    def __init__(self, config: Config, logger: Logger):
+    def __init__(self, logger: Logger, config: Config):
         self.config = config
         self.logger = logger
 
