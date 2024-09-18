@@ -1,4 +1,5 @@
 import os
+import re
 import collections
 
 import discord
@@ -10,6 +11,10 @@ from modules.llm.main import LLM
 
 intents = discord.Intents.default()
 intents.message_content = True
+
+def clean_message(content):
+    cleaned_text = re.sub(r'<@&?\d+>', '', content)
+    return cleaned_text
 
 class DiscordBot(commands.Bot):
     def __init__(self, logger: Logger, config: Config, llm: LLM) -> None:
@@ -63,8 +68,19 @@ class DiscordBot(commands.Bot):
 
         if self.user in message.mentions:
             async with message.channel.typing():
-                input_messages = self.channel_context[message.channel.id]
-                output_message = self.llm.generate(input_messages, self.user)
+                messages = [
+                    {
+                        "role": message.author.id == self.user.id and "assistant" or "user",
+                        "content": clean_message(message.content),
+                    }
+                    for message in self.channel_context[message.channel.id]
+                ]
+
+                messages.insert(0, {
+                    "role": "system",
+                    "content": self.config.system_message,
+                })
+                output_message = self.llm.generate(messages, self.user)
 
                 if output_message:
                     await message.channel.send(output_message[:2000], reference=message)

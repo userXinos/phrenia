@@ -4,6 +4,6 @@
   "peftModel": "",
   "load4bit": false,
   "systemPrompt": "You are a helpful assistant",
-  "temperature": 1,
+  "temperature": 0.6,
   "contextMaxLen": 10
 }

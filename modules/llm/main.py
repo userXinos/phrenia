@@ -8,12 +8,6 @@ from modules.Config import Config
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-
-def clean_message(content):
-    cleaned_text = re.sub(r'<@&?\d+>', '', content)
-    return cleaned_text
-
-
 class LLM:
     def __init__(self, config: Config, logger: Logger):
         self.config = config
@@ -21,13 +15,17 @@ class LLM:
 
         model_name = config.model
         adapters_name = config.peft_model
+
+        self.logger.info(f"Загрузка модели {model_name}")
         model = AutoModelForCausalLM.from_pretrained(
             model_name,
             load_in_4bit=config.load_in_4bit,
             torch_dtype=torch.bfloat16,
         )
         model.to(device)
+
         if self.config.peft_model:
+            self.logger.info(f"Загрузка LORA модели {adapters_name}")
             model = PeftModel.from_pretrained(model, adapters_name)
             model = model.merge_and_unload()
 
@@ -38,19 +36,6 @@ class LLM:
         self.tokenizer = tokenizer
 
     def generate(self, messages: [], me) -> str:
-        messages = [
-            {
-                "role": message.author.id == me.id and "assistant" or "user",
-                "content": clean_message(message.content),
-            }
-            for message in messages
-        ]
-
-        messages.insert(0, {
-            "role": "system",
-            "content": self.config.system_message,
-        })
-
         input_ids = self._input_as_chat(messages)
         output_ids = self._generate_output(input_ids)
         result = self.tokenizer.decode(output_ids, skip_special_tokens=True)
