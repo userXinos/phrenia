@@ -2,6 +2,7 @@
   "token": "",
   "model": "aeonium/Aeonium-v1.1-Chat-4B",
   "peftModel": "",
+  "classifierModel": "tinkoff-ai/response-quality-classifier-large",
   "load4bit": false,
   "systemPrompt": "You are a helpful assistant",
   "temperature": 0.6,

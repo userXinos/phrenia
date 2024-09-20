@@ -1,0 +1,249 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Схема JSON discord канала",
+  "description": "Игнорируйте этот файл, если используете программу для экспорта канала. Этот файл нужен если вы пишите JSON вручную",
+  "type": "object",
+  "properties": {
+    "guild": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "iconUrl": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "iconUrl"
+      ]
+    },
+    "channel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "categoryId": {},
+        "category": {},
+        "name": {
+          "type": "string"
+        },
+        "topic": {}
+      },
+      "required": [
+        "id",
+        "type",
+        "categoryId",
+        "category",
+        "name",
+        "topic"
+      ]
+    },
+    "dateRange": {
+      "type": "object",
+      "properties": {
+        "after": {},
+        "before": {}
+      },
+      "required": [
+        "after",
+        "before"
+      ]
+    },
+    "exportedAt": {
+      "type": "string"
+    },
+    "messages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          },
+          "timestampEdited": {},
+          "callEndedTimestamp": {},
+          "isPinned": {
+            "type": "boolean"
+          },
+          "content": {
+            "type": "string"
+          },
+          "author": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "discriminator": {
+                "type": "string"
+              },
+              "nickname": {
+                "type": "string"
+              },
+              "color": {},
+              "isBot": {
+                "type": "boolean"
+              },
+              "roles": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "color": {},
+                    "position": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "color",
+                    "position"
+                  ]
+                }
+              },
+              "avatarUrl": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "discriminator",
+              "nickname",
+              "color",
+              "isBot",
+              "roles",
+              "avatarUrl"
+            ]
+          },
+          "attachments": {
+            "type": "array",
+            "items": {}
+          },
+          "embeds": {
+            "type": "array",
+            "items": {}
+          },
+          "stickers": {
+            "type": "array",
+            "items": {}
+          },
+          "reactions": {
+            "type": "array",
+            "items": {}
+          },
+          "mentions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "discriminator": {
+                  "type": "string"
+                },
+                "nickname": {
+                  "type": "string"
+                },
+                "color": {},
+                "isBot": {
+                  "type": "boolean"
+                },
+                "roles": {
+                  "type": "array",
+                  "items": {}
+                },
+                "avatarUrl": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "discriminator",
+                "nickname",
+                "color",
+                "isBot",
+                "roles",
+                "avatarUrl"
+              ]
+            }
+          },
+          "reference": {
+            "type": "object",
+            "properties": {
+              "messageId": {
+                "type": "string"
+              },
+              "channelId": {
+                "type": "string"
+              },
+              "guildId": {}
+            },
+            "required": [
+              "messageId",
+              "channelId",
+              "guildId"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "timestamp",
+          "timestampEdited",
+          "callEndedTimestamp",
+          "isPinned",
+          "content",
+          "author",
+          "attachments",
+          "embeds",
+          "stickers",
+          "reactions",
+          "mentions"
+        ]
+      }
+    },
+    "messageCount": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "guild",
+    "channel",
+    "dateRange",
+    "exportedAt",
+    "messages",
+    "messageCount"
+  ]
+}

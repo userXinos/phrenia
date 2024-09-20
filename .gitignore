@@ -1,1 +1,4 @@
 config.json
+raw/*
+dataset/
+!raw/channel.schema.json

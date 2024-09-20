@@ -27,6 +27,10 @@ class Config:
         return self._config["peftModel"]
 
     @property
+    def classifier_model(self) -> str:
+        return self._config["classifierModel"]
+
+    @property
     def load_in_4bit(self) -> bool:
         return self._config["load4bit"]
 
